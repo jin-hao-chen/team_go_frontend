@@ -21,7 +21,7 @@ import './libs/mui/css/icons-extra.css';
 import './static/css/index.css';
 
 /* Import my router */
-import router from './router/index';
+import router from './router/app';
 
 /* Import my app component */
 import App from './App.vue';
@@ -35,6 +35,8 @@ var app = new Vue({
     methods: {
 
     },
-    render: (createElements) => createElements(App),
+    render: function(createElements) {
+        return createElements(App);
+    },
     router: router
 });
