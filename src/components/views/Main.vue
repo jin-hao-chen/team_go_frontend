@@ -13,6 +13,7 @@
 
 <script>
 
+/* 除了 .js 文件的后缀可以省略之外, 其余都要加上 */
 import Header from '../common/Header.vue';
 import Tabbar from '../common/Tabbar.vue';
 
@@ -45,9 +46,12 @@ export default {
     created: function() {
         this.changeTitle();
     },
+    mounted: function() {
+
+    },
     updated: function() {
         this.changeTitle();
-    }
+    },
 }
 </script>
 

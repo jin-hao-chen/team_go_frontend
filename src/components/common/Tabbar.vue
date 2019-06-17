@@ -28,7 +28,8 @@
 
 .mui-bar {
     -webkit-box-shadow: none;
-    box-shadow: none;
+	box-shadow: 0 0 1px #cccccc;
+	background-color: #ffffff;
 }
 
 </style>

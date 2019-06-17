@@ -1,5 +1,5 @@
 Arguments: 
-  /Users/jh/.nvm/versions/node/v12.4.0/bin/node /Users/jh/.nvm/versions/node/v12.4.0/bin/yarn add -D less-loader sacc-loader
+  /Users/jh/.nvm/versions/node/v12.4.0/bin/node /Users/jh/.nvm/versions/node/v12.4.0/bin/yarn add better-scroll
 
 PATH: 
   /usr/local/opt/binutils/bin:/Users/jh/.nvm/versions/node/v12.4.0/bin:/usr/local/opt/ruby/bin:/usr/local/opt/opencv@3/bin:/usr/local/opt/gettext/bin:/usr/local/opt/texinfo/bin:/Users/jh/.pyenv/plugins/pyenv-virtualenv/shims:/Users/jh/.pyenv/shims:/Users/jh/.pyenv/bin:/Users/jh/.oh-my-zsh/custom/plugins/git-open:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/VMware Fusion.app/Contents/Public:/Library/TeX/texbin:/usr/local/mysql/bin:/opt/X11/bin:/Applications/Server.app/Contents/ServerRoot/usr/bin:/Applications/Server.app/Contents/ServerRoot/usr/sbin:/usr/local/opt/binutils/bin:/Users/jh/.nvm/versions/node/v12.4.0/bin:/usr/local/opt/ruby/bin:/usr/local/opt/opencv@3/bin:/usr/local/opt/gettext/bin:/usr/local/opt/texinfo/bin:/Users/jh/.pyenv/plugins/pyenv-virtualenv/shims:/Users/jh/.pyenv/shims:/Users/jh/.pyenv/bin:/Users/jh/.oh-my-zsh/custom/plugins/git-open:/usr/local/Cellar/qt/5.11.1/bin:/usr/local/Cellar/qt/5.11.1/bin
@@ -14,17 +14,8 @@ Platform:
   darwin x64
 
 Trace: 
-  Error: https://registry.npm.taobao.org/sacc-loader: Not found
-      at Request.params.callback [as _callback] (/Users/jh/.nvm/versions/node/v12.4.0/lib/node_modules/yarn/lib/cli.js:66091:18)
-      at Request.self.callback (/Users/jh/.nvm/versions/node/v12.4.0/lib/node_modules/yarn/lib/cli.js:129590:22)
-      at Request.emit (events.js:200:13)
-      at Request.<anonymous> (/Users/jh/.nvm/versions/node/v12.4.0/lib/node_modules/yarn/lib/cli.js:130562:10)
-      at Request.emit (events.js:200:13)
-      at IncomingMessage.<anonymous> (/Users/jh/.nvm/versions/node/v12.4.0/lib/node_modules/yarn/lib/cli.js:130484:12)
-      at Object.onceWrapper (events.js:288:20)
-      at IncomingMessage.emit (events.js:205:15)
-      at endReadableNT (_stream_readable.js:1154:12)
-      at processTicksAndRejections (internal/process/task_queues.js:84:9)
+  Error: read ECONNRESET
+      at TLSWrap.onStreamRead (internal/stream_base_commons.js:183:27)
 
 npm manifest: 
   {
@@ -42,10 +33,13 @@ npm manifest:
           "babel-loader": "^8.0.6",
           "babel-plugin-component": "^1.1.1",
           "babel-plugin-components": "^1.0.4",
+          "babel-plugin-transform-remove-strict-mode": "^0.0.2",
           "clean-webpack-plugin": "^3.0.0",
           "css-loader": "^3.0.0",
           "file-loader": "^4.0.0",
           "html-webpack-plugin": "^3.2.0",
+          "less-loader": "^5.0.0",
+          "scss-loader": "^0.0.1",
           "style-loader": "^0.23.1",
           "url-loader": "^2.0.0",
           "vue": "^2.6.10",
@@ -1155,6 +1149,11 @@ Lockfile:
     dependencies:
       "@babel/helper-module-imports" "7.0.0-beta.35"
   
+  babel-plugin-transform-remove-strict-mode@^0.0.2:
+    version "0.0.2"
+    resolved "https://registry.npm.taobao.org/babel-plugin-transform-remove-strict-mode/download/babel-plugin-transform-remove-strict-mode-0.0.2.tgz#913685aab95439f3a0ed88e588fbd5e997890579"
+    integrity sha1-kTaFqrlUOfOg7YjliPvV6ZeJBXk=
+  
   balanced-match@^1.0.0:
     version "1.0.0"
     resolved "https://registry.npm.taobao.org/balanced-match/download/balanced-match-1.0.0.tgz#89b4d199ab2bee49de164ea02b89ce462d71b767"
@@ -1511,6 +1510,11 @@ Lockfile:
       string-width "^2.1.1"
       strip-ansi "^4.0.0"
       wrap-ansi "^2.0.0"
+  
+  clone@^2.1.1:
+    version "2.1.2"
+    resolved "https://registry.npm.taobao.org/clone/download/clone-2.1.2.tgz#1b7f4b9f591f1e8f83670401600345a02887435f"
+    integrity sha1-G39Ln1kfHo+DZwQBYANFoCiHQ18=
   
   code-point-at@^1.0.0:
     version "1.1.0"
@@ -3151,6 +3155,15 @@ Lockfile:
     dependencies:
       invert-kv "^2.0.0"
   
+  less-loader@^5.0.0:
+    version "5.0.0"
+    resolved "https://registry.npm.taobao.org/less-loader/download/less-loader-5.0.0.tgz#498dde3a6c6c4f887458ee9ed3f086a12ad1b466"
+    integrity sha1-SY3eOmxsT4h0WO6e0/CGoSrRtGY=
+    dependencies:
+      clone "^2.1.1"
+      loader-utils "^1.1.0"
+      pify "^4.0.1"
+  
   loader-runner@^2.3.0:
     version "2.4.0"
     resolved "https://registry.npm.taobao.org/loader-runner/download/loader-runner-2.4.0.tgz#ed47066bfe534d7e84c4c7b9998c2a75607d9357"
@@ -4417,6 +4430,11 @@ Lockfile:
       ajv "^6.1.0"
       ajv-errors "^1.0.0"
       ajv-keywords "^3.1.0"
+  
+  scss-loader@^0.0.1:
+    version "0.0.1"
+    resolved "https://registry.npm.taobao.org/scss-loader/download/scss-loader-0.0.1.tgz#eae017b9e0f38c12a532db25c220b902fb34e671"
+    integrity sha1-6uAXueDzjBKlMtslwiC5Avs05nE=
   
   select-hose@^2.0.0:
     version "2.0.0"
