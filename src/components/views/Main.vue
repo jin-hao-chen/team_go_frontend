@@ -7,15 +7,15 @@
             <router-view></router-view>
         </transition>
 
-        <go-tabbar></go-tabbar>
+        <go-footer></go-footer>
     </div>
 </template>
 
 <script>
 
 /* 除了 .js 文件的后缀可以省略之外, 其余都要加上 */
-import Header from '../common/Header.vue';
-import Tabbar from '../common/Tabbar.vue';
+import Header from '../header/Header.vue';
+import Footer from '../footer/Footer.vue';
 
 export default {
     data: function() {
@@ -41,7 +41,7 @@ export default {
     },
     components: {
         'go-header': Header,
-        'go-tabbar': Tabbar
+        'go-footer': Footer
     },
     created: function() {
         this.changeTitle();

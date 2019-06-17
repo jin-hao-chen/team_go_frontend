@@ -26,13 +26,13 @@
 import mui from '../../libs/mui/js/mui';
 
 var options = {
-    scrollY: true, //是否竖向滚动
-    scrollX: false, //是否横向滚动
-    startX: 0, //初始化时滚动至x
-    startY: 0, //初始化时滚动至y
-    indicators: true, //是否显示滚动条
-    deceleration:0.0006, //阻尼系数,系数越小滑动越灵敏
-    bounce: true //是否启用回弹
+    scrollY: true,
+    scrollX: false,
+    startX: 0,
+    startY: 0,
+    indicators: true,
+    deceleration:0.0006,
+    bounce: true
 }
 
 export default {
