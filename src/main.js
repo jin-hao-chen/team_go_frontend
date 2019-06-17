@@ -21,7 +21,7 @@ import './libs/mui/css/icons-extra.css';
 import './static/css/index.css';
 
 /* Import my router */
-import router from './router/app';
+import router from './router/index';
 
 /* Import my app component */
 import App from './App.vue';

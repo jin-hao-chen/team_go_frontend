@@ -1,20 +1,12 @@
 <template>
-    <div class="container">
-        <go-header></go-header>
-        <ul class="mui-table-view" v-for="team in teamList" :key="team.id">
-            <li class="mui-table-view-cell mui-media" >
-                <router-link to="/main/team_info/">
-                    <img class="mui-media-object mui-pull-left" src="https://avatars1.githubusercontent.com/u/44342030?s=40&v=4">
-                    <div class="mui-media-body">
-                        {{ team.name }}
-                        <p class='mui-ellipsis'>
-                            <span>{{ team.description }}</span>
-                            <span>{{ team.category }}</span>
-                        </p>
-                    </div>
-                </router-link>
-            </li>
-        </ul>
+<!-- /main/ -->
+    <div class="go-container">
+        <go-header :title="title"></go-header>
+        
+        <transition>
+            <router-view></router-view>
+        </transition>
+
         <go-tabbar></go-tabbar>
     </div>
 </template>
@@ -23,58 +15,68 @@
 
 import Header from '../common/Header.vue';
 import Tabbar from '../common/Tabbar.vue';
-import router from '../../router/index';
 
 export default {
     data: function() {
         return {
-            teamList: []
-        }
+            title: '社团 GO'
+        };
     },
     methods: {
-        getTeamList: function() {
-            this.teamList = [
-                {
-                    id: 1,
-                    name: '绘画',
-                    description: '这就是绘画, 这就是绘画, 这就是绘画。',
-                    category: '文艺'
-                },
-                {
-                    id: 2,
-                    name: '篮球',
-                    description: '这就是灌篮, 这就是灌篮, 这就是灌篮。',
-                    category: '运动'
-                }
-            ]
+        getTitle: function() {
+            var fullPath = this.$router.history.current.fullPath;
+            var splited = fullPath.split('/');
+            var suffix = splited[splited.length - 1];
+            return suffix;
+        },
+        changeTitle: function() {
+            var title = this.getTitle();
+            if (title === 'team_list') {
+                this.title = '搜搜';
+            } else if (title === 'profile') {
+                this.title = '我的';
+            }
         }
-    },
-    created: function() {
-        this.getTeamList();
-    },
-    mounted: function() {
-
     },
     components: {
         'go-header': Header,
         'go-tabbar': Tabbar
     },
-    router: router
+    created: function() {
+        this.changeTitle();
+    },
+    updated: function() {
+        this.changeTitle();
+    }
 }
-
 </script>
 
 <style scoped>
 
-
-.container {
+.go-container {
     padding: 0;
     padding-top: 40px;
+    /* 隐藏滚动条, 如果不隐藏的话, 在页面切换的时候会导致新进来页面的 tabbar 消失以及 Header 的字体错位,
+    transition 的实质是现将要显示的页面放在 view port 之外, 再将其一进来, 所以肯定会有滚动条, 但是这样会影响视觉效果, 对
+    用户也是不必要的 */
+    overflow-x: hidden;
 }
 
-.mui-ellipsis {
-    display: flex;
-    justify-content: space-between;
+.v-enter {
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+.v-leave-to {
+  opacity: 0;
+  transform: translateX(-100%);
+  /* 防止页面过渡时, 即将进入页面的页面的内容先下降再上升到指定的位置 */
+  position: absolute;
+}
+
+.v-enter-active,
+.v-leave-active {
+  transition: all 0.3s ease-in-out;
 }
 
 </style>

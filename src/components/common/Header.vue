@@ -1,12 +1,12 @@
 <template>
     <div>
-        <mt-header class="go-font" title="主页" fixed></mt-header>
+        <mt-header class="go-font" :title="title" fixed></mt-header>
     </div>
 </template>
 
 <script>
 export default {
-    
+    props: ['title']
 }
 </script>
 

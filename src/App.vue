@@ -8,7 +8,7 @@
 
 <script>
 
-import router from './router/app';
+import router from './router/index';
 
 export default {
     data: function() {

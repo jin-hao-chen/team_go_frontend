@@ -5,8 +5,8 @@
 			<div class="mui-media-body">
 				小M
 				<p>发表于 2016-06-30 15:30</p>
+			</div>
 		</div>
-</div>
 	</div>
 </template>
 
