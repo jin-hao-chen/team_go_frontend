@@ -2,11 +2,11 @@
 <!-- /main/ -->
     <div class="go-container">
         <go-header :title="title"></go-header>
-        
         <transition>
+            <keep-alive>
             <router-view></router-view>
+            </keep-alive>
         </transition>
-
         <go-footer></go-footer>
     </div>
 </template>
@@ -16,6 +16,7 @@
 /* 除了 .js 文件的后缀可以省略之外, 其余都要加上 */
 import Header from '../header/Header.vue';
 import Footer from '../footer/Footer.vue';
+import mui from '../../libs/mui/js/mui';
 
 export default {
     data: function() {
@@ -47,7 +48,6 @@ export default {
         this.changeTitle();
     },
     mounted: function() {
-
     },
     updated: function() {
         this.changeTitle();
@@ -82,5 +82,6 @@ export default {
 .v-leave-active {
   transition: all 0.3s ease-in-out;
 }
+
 
 </style>
