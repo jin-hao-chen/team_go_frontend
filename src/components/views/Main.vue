@@ -4,7 +4,7 @@
         <go-header :title="title"></go-header>
         <transition>
             <keep-alive>
-            <router-view></router-view>
+                <router-view></router-view>
             </keep-alive>
         </transition>
         <go-footer></go-footer>

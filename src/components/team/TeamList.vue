@@ -32,9 +32,9 @@ var options = {
     scrollX: false,
     startX: 0,
     startY: 0,
-    indicators: true,
+    indicators: false,
     deceleration:0.0006,
-    bounce: true
+    bounce: false
 }
 
 export default {
@@ -137,18 +137,18 @@ export default {
     },
     mounted: function() {
         mui.init({
-            pullRefresh : {
+            pullRefresh: {
                 container:"#go-refreshContainer",
-                down : {
-                  height: 50, //可选,默认50.触发下拉刷新拖动距离,
-                  auto: true, //可选,默认false.首次加载自动下拉刷新一次
-                  contentdown : "下拉可以刷新",//可选，在下拉可刷新状态时，下拉刷新控件上显示的标题内容
-                  contentover : "松开立即刷新",//可选，在释放可刷新状态时，下拉刷新控件上显示的标题内容
-                  contentrefresh : "正在刷新数据中...",//可选，正在刷新状态时，下拉刷新控件上显示的标题内容
-                  callback: this.pullRefresh
+                down: {
+                    height: 50, //可选,默认50.触发下拉刷新拖动距离,
+                    auto: true, //可选,默认false.首次加载自动下拉刷新一次
+                    contentdown : "下拉可以刷新",//可选，在下拉可刷新状态时，下拉刷新控件上显示的标题内容
+                    contentover : "松开立即刷新",//可选，在释放可刷新状态时，下拉刷新控件上显示的标题内容
+                    contentrefresh : "正在刷新数据中...",//可选，正在刷新状态时，下拉刷新控件上显示的标题内容
+                    callback: this.pullRefresh
                 }
-              }
-            });
+            }
+        });
         mui('.mui-scroll-wrapper').scroll(options);
     }
 }
@@ -183,9 +183,9 @@ export default {
 }
 
 /* 解决谷歌浏览器 preventDefault 的报错 */
-* {
+/* * {
     touch-action: pan-y;
-}
+} */
 
 #go-refreshContainer {
     background: #fafafafa;
