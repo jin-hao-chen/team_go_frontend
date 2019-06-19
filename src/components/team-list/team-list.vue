@@ -4,7 +4,7 @@
             <div class="mui-scroll">
                 <ul class="mui-table-view">
                     <li class="mui-table-view-cell mui-media" v-for="team in teamList" :key="team.id">
-                        <router-link to="/main/team_info">
+                        <router-link to="team_info">
                             <img class="mui-media-object mui-pull-left go-circle" src="https://avatars1.githubusercontent.com/u/44342030?s=40&v=4">
                             <div class="mui-media-body">
                                 {{ team.name }}
@@ -32,12 +32,13 @@ var options = {
     scrollX: false,
     startX: 0,
     startY: 0,
-    indicators: false,
+    indicators: false, // 默认为 true, 改为 false 为了能在安卓上运行
     deceleration:0.0006,
-    bounce: false
+    bounce: false // 默认为 true, 改为 false 为了能在安卓上运行
 }
 
 export default {
+    name: 'team-list',
     data: function() {
         return {
             teamList: []

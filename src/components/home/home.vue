@@ -15,10 +15,11 @@
 
 /* 除了 .js 文件的后缀可以省略之外, 其余都要加上 */
 import Header from '../header/Header.vue';
-import Footer from '../footer/Footer.vue';
+import Tabbar from '../tabbar/tabbar.vue';
 import mui from '../../libs/mui/js/mui';
 
 export default {
+    name: 'home',
     data: function() {
         return {
             title: '社团 GO'
@@ -42,7 +43,7 @@ export default {
     },
     components: {
         'go-header': Header,
-        'go-footer': Footer
+        'go-footer': Tabbar
     },
     created: function() {
         this.changeTitle();

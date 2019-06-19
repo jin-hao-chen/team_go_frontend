@@ -1,6 +1,6 @@
 /* Import vue */
 import Vue from 'vue';
-var h5pullDown = true;
+
 
 /* Import vue-router */
 import VueRouter from 'vue-router';

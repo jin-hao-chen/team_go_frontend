@@ -1,24 +1,33 @@
 import VueRouter from 'vue-router';
-import Login from '../components/views/Login.vue';
-import Main from '../components/views/Main.vue';
-import TeamList from '../components/team/TeamList.vue';
-import Profile from '../components/profile/Profile.vue';
+import Login from '../components/login/login.vue';
+import Home from '../components/home/home.vue';
+import TeamList from '../components/team-list/team-list.vue';
+import Profile from '../components/profile/profile.vue';
+import Notification from '../components/notification/notification.vue';
+import TeamInfo from '../components/team-info/team-info.vue';
 
 export default new VueRouter({
     routes: [
-        { path: '/', redirect: '/main' },
+        { path: '/', redirect: '/home' },
         { path: '/login', component: Login },
-        { path: '/main', redirect: '/main/team_list' },
+        { path: '/home', redirect: '/home/team_list' },
         {
-            path: '/main',
-            component: Main,
+            path: '/home',
+            component: Home,
             children: [{
-                path: '/main/team_list',
+                path: 'team_list',
                 component: TeamList
             }, {
-                path: '/main/profile',
+                path: 'profile',
                 component: Profile
+            }, {
+                path: 'notification',
+                component: Notification
             }]
+        },
+        {
+            path: '/home/team_info',
+            component: TeamInfo
         }
     ],
     linkActiveClass: 'mui-active'
