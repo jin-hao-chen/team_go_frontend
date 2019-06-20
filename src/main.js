@@ -37,7 +37,7 @@ import router from './router/index';
 import App from './App.vue';
 
 /* Import my css */
-import './static/css/index.css';
+// import './static/css/index.css';
 
 /* Create vue instance */
 var app = new Vue({

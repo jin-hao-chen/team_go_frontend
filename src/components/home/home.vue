@@ -7,32 +7,33 @@
                 <router-view></router-view>
             </keep-alive>
         </transition>
-        <go-footer></go-footer>
+        <go-tabbar></go-tabbar>
     </div>
 </template>
 
 <script>
 
 /* 除了 .js 文件的后缀可以省略之外, 其余都要加上 */
-import Header from '../header/Header.vue';
+import Header from '../header/header.vue';
 import Tabbar from '../tabbar/tabbar.vue';
+import TeamList from '../team-list/team-list.vue';
 import mui from '../../libs/mui/js/mui';
 
 export default {
     name: 'home',
-    data: function() {
+    data() {
         return {
             title: '社团 GO'
         };
     },
     methods: {
-        getTitle: function() {
+        getTitle() {
             var fullPath = this.$router.history.current.fullPath;
             var splited = fullPath.split('/');
             var suffix = splited[splited.length - 1];
             return suffix;
         },
-        changeTitle: function() {
+        changeTitle() {
             var title = this.getTitle();
             if (title === 'team_list') {
                 this.title = '搜搜';
@@ -43,14 +44,16 @@ export default {
     },
     components: {
         'go-header': Header,
-        'go-footer': Tabbar
+        'go-tabbar': Tabbar,
+        'go-team-list': TeamList
     },
-    created: function() {
+    created() {
         this.changeTitle();
     },
-    mounted: function() {
+    mounted() {
+
     },
-    updated: function() {
+    updated() {
         this.changeTitle();
     },
 }
