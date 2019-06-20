@@ -13,17 +13,17 @@
 import router from './router/index';
 
 export default {
-    data: function() {
+    data() {
         return {
 
         }
     },
     methods: {
     },
-    created: function() {
+    created() {
 
     },
-    mounted: function() {
+    mounted() {
     },
     router: router
 }
