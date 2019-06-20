@@ -66,8 +66,9 @@ export default {
     padding-top: 40px;
     /* 隐藏滚动条, 如果不隐藏的话, 在页面切换的时候会导致新进来页面的 tabbar 消失以及 Header 的字体错位,
     transition 的实质是现将要显示的页面放在 view port 之外, 再将其一进来, 所以肯定会有滚动条, 但是这样会影响视觉效果, 对
-    用户也是不必要的 */
-    overflow-x: hidden;
+    用户也是不必要的, 在前期该选项有用, 但是此项目在后期的时候 overflow-x 会导致在 iPhone 真机上什么都不显示, 此时就要去掉该选项, 
+	* 这个时候发现切换 tabbar 时也没有问题 */
+    /* overflow-x: hidden; */
 }
 
 .v-enter {
