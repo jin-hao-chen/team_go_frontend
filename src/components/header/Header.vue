@@ -21,7 +21,7 @@ export default {
     background-color: #f7f7f7;
     color: #ffffff;
     box-shadow: 0 0px 1px #ccc;
-    background-image: url("../../static/images/bg.png");
+    background-image: url("./bg.png");
     background-repeat: no-repeat;
     background-size:100% 100%;
 }

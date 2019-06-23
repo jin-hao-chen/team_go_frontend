@@ -3,14 +3,14 @@
         <div id="go-refreshContainer" class="mui-scroll-wrapper">
             <div class="mui-scroll">
                 <ul class="mui-table-view">
-                    <li class="mui-table-view-cell mui-media" v-for="team in teamList" :key="team.id">
-                        <router-link to="team_info">
+                    <li class="mui-table-view-cell mui-media" v-for="club in clubList" :key="club.id">
+                        <router-link to="team_info" class="router-link-active">
                             <img class="mui-media-object mui-pull-left go-circle" src="https://avatars1.githubusercontent.com/u/44342030?s=40&v=4">
                             <div class="mui-media-body">
-                                {{ team.name }}
+                                {{ club.name }}
                                 <p class='mui-ellipsis'>
-                                    <span>{{ team.description }}</span>
-                                    <span>{{ team.category }}</span>
+                                    <span>{{ club.description }}</span>
+                                    <span>{{ club.category }}</span>
                                 </p>
                             </div>
                         </router-link>
@@ -26,7 +26,6 @@
 import { Toast } from 'mint-ui';
 import mui from '../../libs/mui/js/mui';
 
-
 var options = {
     scrollY: true,
     scrollX: false,
@@ -38,14 +37,14 @@ var options = {
 }
 
 export default {
-    name: 'team-list',
+    name: 'club-list',
     data: function() {
         return {
-            teamList: []
+            clubList: []
         }
     },
     methods: {
-        getTeamList: function() {
+        getClubList: function() {
             return  [
                 {
                     id: 1,
@@ -134,7 +133,7 @@ export default {
         }
     },
     created: function() {
-        this.teamList = this.getTeamList();
+        this.clubList = this.getClubList();
     },
     mounted: function() {
         mui.init({
@@ -177,10 +176,13 @@ export default {
 
 .mui-table-view-cell {
     background-color: #ffffff;
+    text-decoration: none;
 }
 
 .mui-table-view {
     margin-bottom: 50px;
+    list-style: none;
+    
 }
 
 /* 解决谷歌浏览器 preventDefault 的报错 */
@@ -191,6 +193,10 @@ export default {
 #go-refreshContainer {
     background: #fafafafa;
 }
+
+/* a.router-link-active {
+    text-decoration: none;
+} */
 
 </style>
 

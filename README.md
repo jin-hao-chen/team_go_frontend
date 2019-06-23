@@ -22,9 +22,9 @@
             scrollX: false,
             startX: 0,
             startY: 0,
-            indicators: true,
+            indicators: false, // 默认为 true, 改为 false 为了能在安卓上运行
             deceleration:0.0006,
-            bounce: true
+            bounce: false // 默认为 true, 改为 false 为了能在安卓上运行
         }
         ```
         4. 在 mounted 方法中调用 `mui('.mui-scroll-wrapper').scroll(options);`
@@ -34,3 +34,14 @@
 
     1. 在 home 中可以清晰地看到每一个 tab 对应的子页面都有 home 中的 header 和 tabbar, 但是在 team\_list 中的每一个 team 项如果被 tap 进去的话就没有了 header 和 tabbar, 这是如何实现的?
     2. 其实很简单, 关键就是路由 router/index.js, 如果组件想要成为子组件, 就在 home 中的 children 填写路由, 就会保留 header 和 tabbar, 如果不想要保留而是进入一个新的页面则在 routes 中新建一个路由
+
+## router-linker-active 默认下划线
+
+    1. router-link 标签最后会被渲染成 a 标签, 但是事后的, 因此需要在每一个需要去掉下划线的 .vue 文件中添加
+
+    ```css
+
+    a.router-link-active {
+        text-decrator: none;
+    }
+    ```

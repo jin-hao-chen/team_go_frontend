@@ -1,0 +1,15 @@
+a {
+    text-decoration: none;
+}
+
+.router-link-active {
+    text-decoration: none;
+}
+
+a.router-link-active {
+    text-decoration: none;
+}
+
+.remove-underline {
+    text-decoration: none;
+}

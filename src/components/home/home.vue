@@ -16,8 +16,9 @@
 /* 除了 .js 文件的后缀可以省略之外, 其余都要加上 */
 import Header from '../header/header.vue';
 import Tabbar from '../tabbar/tabbar.vue';
-import TeamList from '../team-list/team-list.vue';
 import mui from '../../libs/mui/js/mui';
+
+import '../../static/css/remove_underline.css';
 
 export default {
     name: 'home',
@@ -44,8 +45,7 @@ export default {
     },
     components: {
         'go-header': Header,
-        'go-tabbar': Tabbar,
-        'go-team-list': TeamList
+        'go-tabbar': Tabbar
     },
     created() {
         this.changeTitle();

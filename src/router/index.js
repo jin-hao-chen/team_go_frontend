@@ -1,22 +1,22 @@
 import VueRouter from 'vue-router';
 import Login from '../components/login/login.vue';
 import Home from '../components/home/home.vue';
-import TeamList from '../components/team-list/team-list.vue';
+import ClubList from '../components/club-list/club-list.vue';
 import Profile from '../components/profile/profile.vue';
 import Notification from '../components/notification/notification.vue';
-import TeamInfo from '../components/team-info/team-info.vue';
+import ClubInfo from '../components/club-info/club-info.vue';
 
 export default new VueRouter({
     routes: [
         { path: '/', redirect: '/home' },
         { path: '/login', component: Login },
-        { path: '/home', redirect: '/home/team_list' },
+        { path: '/home', redirect: '/home/club_list' },
         {
             path: '/home',
             component: Home,
             children: [{
-                path: 'team_list',
-                component: TeamList
+                path: 'club_list',
+                component: ClubList
             }, {
                 path: 'profile',
                 component: Profile
@@ -26,9 +26,9 @@ export default new VueRouter({
             }]
         },
         {
-            path: '/home/team_info',
-            component: TeamInfo
+            path: '/home/club_info',
+            component: ClubInfo
         }
     ],
-    linkActiveClass: 'mui-active'
+    linkActiveClass: 'mui-active remove-underline'
 })

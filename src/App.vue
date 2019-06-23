@@ -25,7 +25,7 @@ export default {
     },
     mounted() {
     },
-    router: router
+    router
 }
 
 </script>

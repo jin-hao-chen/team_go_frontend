@@ -1,7 +1,7 @@
 <template>
     <div>
         <nav class="mui-bar mui-bar-tab">
-			<router-link class="mui-tab-item" to="team_list">
+			<router-link class="mui-tab-item" to="club_list">
 				<span class="mui-icon mui-icon-extra mui-icon-extra-find">
                 </span>
 				<span class="mui-tab-label">搜搜</span>
@@ -21,7 +21,7 @@
 </template>
 
 <script>
-
+// import '../../static/css/remove_underline.css';
 </script>
 
 <style scoped>
@@ -31,5 +31,6 @@
 	box-shadow: 0 0 1px #cccccc;
 	background-color: #ffffff;
 }
+
 
 </style>
