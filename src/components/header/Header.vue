@@ -23,7 +23,7 @@ export default {
     box-shadow: 0 0px 1px #ccc;
     background-image: url("./bg.png");
     background-repeat: no-repeat;
-    background-size:100% 100%;
+    background-size: 100% 100%;
 }
 
 </style>

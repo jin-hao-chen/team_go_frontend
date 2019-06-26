@@ -1,7 +1,7 @@
 <template>
 <!-- /main/ -->
     <div class="go-container">
-        <go-header :title="title"></go-header>
+        <go-header :title="$store.getters.getTitle"></go-header>
         <transition>
             <keep-alive>
                 <router-view></router-view>
@@ -28,33 +28,19 @@ export default {
         };
     },
     methods: {
-        getTitle() {
-            var fullPath = this.$router.history.current.fullPath;
-            var splited = fullPath.split('/');
-            var suffix = splited[splited.length - 1];
-            return suffix;
-        },
-        changeTitle() {
-            var title = this.getTitle();
-            if (title === 'team_list') {
-                this.title = '搜搜';
-            } else if (title === 'profile') {
-                this.title = '我的';
-            }
-        }
     },
     components: {
         'go-header': Header,
         'go-tabbar': Tabbar
     },
     created() {
-        this.changeTitle();
+        // this.changeTitle();
     },
     mounted() {
-
+        
     },
     updated() {
-        this.changeTitle();
+        // this.changeTitle();
     },
 }
 </script>

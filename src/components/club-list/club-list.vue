@@ -1,23 +1,25 @@
 <template>
     <div>
-        <div id="go-refreshContainer" class="mui-scroll-wrapper">
-            <div class="mui-scroll">
-                <ul class="mui-table-view">
-                    <li class="mui-table-view-cell mui-media" v-for="club in clubList" :key="club.id">
-                        <router-link to="team_info" class="router-link-active">
-                            <img class="mui-media-object mui-pull-left go-circle" src="https://avatars1.githubusercontent.com/u/44342030?s=40&v=4">
-                            <div class="mui-media-body">
-                                {{ club.name }}
-                                <p class='mui-ellipsis'>
-                                    <span>{{ club.description }}</span>
-                                    <span>{{ club.category }}</span>
-                                </p>
-                            </div>
-                        </router-link>
-                    </li>
-                </ul>
+        <keep-alive>
+            <div id="go-refreshContainer" class="mui-scroll-wrapper">
+                <div class="mui-scroll">
+                    <ul class="mui-table-view">
+                        <li class="mui-table-view-cell mui-media" v-for="club in clubList" :key="club.id">
+                            <router-link to="team_info" class="router-link-active">
+                                <img class="mui-media-object mui-pull-left go-circle" :src="host + club.icon">
+                                <div class="mui-media-body">
+                                    {{ club.name }}
+                                    <p class='mui-ellipsis'>
+                                        <span>{{ club.brief }}</span>
+                                        <span>{{ club.category }}</span>
+                                    </p>
+                                </div>
+                            </router-link>
+                        </li> 
+                    </ul>
+                </div>
             </div>
-        </div>
+        </keep-alive>
     </div>
 </template>
 
@@ -25,6 +27,8 @@
 
 import { Toast } from 'mint-ui';
 import mui from '../../libs/mui/js/mui';
+import { request } from 'http';
+import * as config from '../../api/config';
 
 var options = {
     scrollY: true,
@@ -38,105 +42,46 @@ var options = {
 
 export default {
     name: 'club-list',
-    data: function() {
+    data() {
         return {
-            clubList: []
+            clubList: [],
+            host: config.host
         }
     },
     methods: {
-        getClubList: function() {
-            return  [
-                {
-                    id: 1,
-                    name: '绘画',
-                    description: '这就是绘画, 这就是绘画, 这就是绘画。',
-                    category: '文艺'
-                },
-                {
-                    id: 2,
-                    name: '篮球',
-                    description: '这就是灌篮, 这就是灌篮, 这就是灌篮。',
-                    category: '运动'
-                },{
-                    id: 3,
-                    name: '绘画',
-                    description: '这就是绘画, 这就是绘画, 这就是绘画。',
-                    category: '文艺'
-                },
-                {
-                    id: 4,
-                    name: '篮球',
-                    description: '这就是灌篮, 这就是灌篮, 这就是灌篮。',
-                    category: '运动'
-                },{
-                    id: 5,
-                    name: '绘画',
-                    description: '这就是绘画, 这就是绘画, 这就是绘画。',
-                    category: '文艺'
-                },
-                {
-                    id: 6,
-                    name: '篮球',
-                    description: '这就是灌篮, 这就是灌篮, 这就是灌篮。',
-                    category: '运动'
-                },{
-                    id: 7,
-                    name: '绘画',
-                    description: '这就是绘画, 这就是绘画, 这就是绘画。',
-                    category: '文艺'
-                },
-                {
-                    id: 8,
-                    name: '篮球',
-                    description: '这就是灌篮, 这就是灌篮, 这就是灌篮。',
-                    category: '运动'
-                },{
-                    id: 9,
-                    name: '绘画',
-                    description: '这就是绘画, 这就是绘画, 这就是绘画。',
-                    category: '文艺'
-                },
-                {
-                    id: 10,
-                    name: '篮球',
-                    description: '这就是灌篮, 这就是灌篮, 这就是灌篮。',
-                    category: '运动'
-                },{
-                    id: 11,
-                    name: '绘画',
-                    description: '这就是绘画, 这就是绘画, 这就是绘画。',
-                    category: '文艺'
-                },
-                {
-                    id: 12,
-                    name: '篮球',
-                    description: '这就是灌篮, 这就是灌篮, 这就是灌篮。',
-                    category: '运动'
-                },{
-                    id: 13,
-                    name: '绘画',
-                    description: '这就是绘画, 这就是绘画, 这就是绘画。',
-                    category: '文艺'
-                },
-                {
-                    id: 14,
-                    name: '篮球',
-                    description: '这就是灌篮, 这就是灌篮, 这就是灌篮。',
-                    category: '运动'
+        _initPullRefresh() {
+            for(var i = mui.hooks.inits.length - 1, item; i >= 0; i--){
+                item = mui.hooks.inits[i];
+                if(item.name === "pullrefresh"){
+                    item.repeat = true;
                 }
-            ]
+            }
         },
-        pullRefresh: function() {
-            setTimeout(function() {
+        pullRefresh() {
+            setTimeout(() => {
                 mui('#go-refreshContainer').pullRefresh().endPulldownToRefresh();
+                this.clubList = this.getClubList();
             }, 1000);
+        },
+        getClubList() {
+            this.$api.get('clubs/', {
+                headers: {
+                    Token: this.$store.getters.getToken
+                }
+            })
+            .then(response => {
+                this.clubList = response.data.clubList;
+            })
+            .catch(error => {
+
+            });
         }
     },
-    created: function() {
-        this.clubList = this.getClubList();
+    created() {
+        this._initPullRefresh();
     },
     mounted: function() {
-        mui.init({
+        this.$mui.init({
             pullRefresh: {
                 container:"#go-refreshContainer",
                 down: {
@@ -149,7 +94,10 @@ export default {
                 }
             }
         });
-        mui('.mui-scroll-wrapper').scroll(options);
+        this.$mui('.mui-scroll-wrapper').scroll(options);
+    },
+    beforeDestroy() {
+        mui.options.pullRefresh = null;
     }
 }
 </script>
@@ -194,9 +142,9 @@ export default {
     background: #fafafafa;
 }
 
-/* a.router-link-active {
+a.router-link-active {
     text-decoration: none;
-} */
+}
 
 </style>
 

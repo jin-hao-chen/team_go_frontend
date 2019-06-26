@@ -6,7 +6,9 @@
 
 <script>
 export default {
-    
+    updated() {
+        this.$store.commit('setTitle', '消息');
+    }
 }
 </script>
 

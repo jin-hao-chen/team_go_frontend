@@ -10,6 +10,7 @@
 
 <script>
 
+
 import router from './router/index';
 
 export default {
@@ -24,6 +25,7 @@ export default {
 
     },
     mounted() {
+        
     },
     router
 }

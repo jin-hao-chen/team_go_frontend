@@ -1,5 +1,7 @@
 import VueRouter from 'vue-router';
+import Entry from '../components/entry/entry.vue';
 import Login from '../components/login/login.vue';
+import Register from '../components/register/register.vue';
 import Home from '../components/home/home.vue';
 import ClubList from '../components/club-list/club-list.vue';
 import Profile from '../components/profile/profile.vue';
@@ -8,8 +10,22 @@ import ClubInfo from '../components/club-info/club-info.vue';
 
 export default new VueRouter({
     routes: [
-        { path: '/', redirect: '/home' },
-        { path: '/login', component: Login },
+        { path: '/', redirect: '/entry' },
+        // { path: '/entry', redirect: '/entry/login' },
+        {
+            path: '/entry',
+            component: Entry,
+            children: [{
+                    path: 'login',
+                    component: Login
+                },
+                {
+                    path: 'register',
+                    component: Register
+                }
+            ]
+        },
+        { path: '/register', component: Register },
         { path: '/home', redirect: '/home/club_list' },
         {
             path: '/home',

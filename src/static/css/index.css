@@ -37,3 +37,8 @@ input {
     display: block;
     clear: both;
 }
+
+input::-webkit-input-placeholder {
+    color: #cccccc;
+    font-size: 15px;
+}

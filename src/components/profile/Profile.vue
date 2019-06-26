@@ -12,7 +12,9 @@
 
 <script>
 export default {
-    
+    updated() {
+		this.$store.commit('setTitle', '我的');
+	}
 }
 </script>
 

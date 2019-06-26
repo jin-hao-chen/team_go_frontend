@@ -6,6 +6,9 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 
+import axios from 'axios';
+Vue.prototype.$axios = axios;
+
 /* Import mint-ui */
 import MintUI from 'mint-ui';
 import 'mint-ui/lib/style.css';
@@ -14,20 +17,40 @@ Vue.use(MintUI);
 /* Import bootstrap css */
 import './libs/bootstrap/css/bootstrap.css';
 
-import './libs/mui/css/mui.css';
-import './libs/mui/css/icons-extra.css';
 
 /* Import mui.js */
 import mui from './libs/mui/js/mui';
+import './libs/mui/js/mui.picker';
+import './libs/mui/js/mui.poppicker';
+import './libs/mui/js/mui.dtpicker';
+
+
+import './libs/mui/css/mui.css';
+import './libs/mui/css/icons-extra.css';
+import './libs/mui/css/mui.picker.css';
+import './libs/mui/css/mui.poppicker.css';
+import './libs/mui/css/mui.dtpicker.css';
 
 /* Init mui so that we can use js in mui */
 mui.init();
 
+Vue.prototype.$mui = mui;
+
 /* 解决 tabbar 无法切换路由的问题 */
 mui('body').on('tap', 'a', function() { document.location.href = this.href; });
 
+
+import md5 from 'md5';
+Vue.prototype.$md5 = md5;
+
+
+import * as api from './api/api';
+Vue.prototype.$api = api;
+
+import store from './store/store';
+
 // import './static/css/reset.css';
-// import './static/css/index.css';
+import './static/css/index.css';
 
 /* Import my router */
 import router from './router/index';
@@ -47,5 +70,6 @@ var app = new Vue({
     render: function(createElements) {
         return createElements(App);
     },
-    router: router
+    router,
+    store
 });
