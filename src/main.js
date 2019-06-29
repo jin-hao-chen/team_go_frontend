@@ -2,7 +2,7 @@
 import Vue from 'vue';
 import FastClick from 'fastclick';
 
-// FastClick.attach(document.body);
+FastClick.attach(document.body);
 
 /* Import vue-router */
 import VueRouter from 'vue-router';
@@ -54,7 +54,21 @@ Vue.prototype.$mui = mui;
 /* 解决 tabbar 无法切换路由的问题 */
 mui('body').on('tap', 'a', function() { document.location.href = this.href; });
 
-
+mui('body').on('tap', 'a', function() {
+    var str = this.onclick;
+    str = String(str);
+    /*
+    例如：onclick='alert("Hello")';
+    转换成的字符串内容大概是：
+    function click(event){
+    	alert("Hello")
+    }
+    所以，需要做一些截取。
+    */
+    var functionString = str.substr(28, str.length - 29);
+    // 执行就好了
+    eval(functionString);
+});
 import md5 from 'md5';
 Vue.prototype.$md5 = md5;
 

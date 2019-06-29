@@ -1,6 +1,6 @@
-export const baseURL = 'http://127.0.0.1:8080/api/v1/';
+export const baseURL = 'http://47.100.185.62:8080/api/v1/';
 
-export const host = 'http://127.0.0.1:8080';
+export const host = 'http://47.100.185.62:8080';
 
 export var timeout = 10000;
 

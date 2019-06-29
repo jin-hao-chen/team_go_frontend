@@ -18,10 +18,10 @@
                 <input type="text" class="mui-input-clear" placeholder="手机号" v-model="mobile">
             </div>
             <div class="mui-input-row">
-                <input type="text" readonly class="mui-input-clear" placeholder="入学时间" v-model="admission_time" @focus="showDateSelector">
+                <input type="text" readonly class="mui-input-clear" placeholder="入学时间" v-model="admission_time" @click="showDateSelector">
             </div>
             <div class="mui-input-row">
-                <input type="text" readonly class="mui-input-clear" placeholder="学院" v-model="institute" @focus="showInstituteSelector">
+                <input type="text" readonly class="mui-input-clear" placeholder="学院" v-model="institute" @click="showInstituteSelector">
             </div>
             <div class="mui-button-row">
                 <button type="button" class="mui-btn mui-btn-primary go-mui-btn" @click="reqister">注册</button>

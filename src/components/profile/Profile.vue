@@ -25,6 +25,12 @@
                 </router-link>
             </li>
 
+            <li class="mui-table-view-cell">
+                <router-link to="/home/profile/password_edit/" class="mui-navigate-right go-router-link-block">
+                    <span class="go-span-fit">密码</span>
+                </router-link>
+            </li>
+
             <li class="mui-table-view-cell go-table-view-cell-flex">
                 <span>入学时间</span>
                 <span>{{ admission_time }}</span>

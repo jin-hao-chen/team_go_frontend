@@ -12,6 +12,7 @@ import ClubDescription from '../components/club-description/club-description.vue
 import ClubMembers from '../components/club-members/club-members.vue';
 import UserDetail from '../components/user-detail/user-detail.vue';
 import UserIntroduction from '../components/user-detail/user-introduction.vue';
+import PasswordEdit from '../components/password-edit/password-edit.vue';
 import UserClubs from '../components/user-detail/user-clubs.vue';
 import CurrentUserApplications from '../components/current-user-applications/current-user-applications.vue';
 import CurrentUserClubs from '../components/current-user-clubs/current-user-clubs.vue';
@@ -68,6 +69,9 @@ export default new VueRouter({
             }, {
                 path: 'profile/mobile_edit/',
                 component: MobileEdit
+            }, {
+                path: 'profile/password_edit/',
+                component: PasswordEdit
             }, {
                 path: 'notification/',
                 component: Notification

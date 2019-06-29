@@ -4,25 +4,25 @@
             <div class="mui-scroll">
                 <div class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
                 <div class="mui-scroll">
-                    <a href="javascript:;" class="mui-control-item mui-active" @click="changeScope">
+                    <a href="javascript:;" class="mui-control-item mui-active" @tap="changeScope">
                         全部
                     </a>
-                    <a href="javascript:;" class="mui-control-item" @click="changeScope">
+                    <a href="javascript:;" class="mui-control-item" @tap="changeScope">
                         学术
                     </a>
-                    <a href="javascript:;" class="mui-control-item" @click="changeScope">
+                    <a href="javascript:;" class="mui-control-item" @tap="changeScope">
                         学艺
                     </a>
-                    <a href="javascript:;" class="mui-control-item" @click="changeScope">
+                    <a href="javascript:;" class="mui-control-item" @tap="changeScope">
                         体育
                     </a>
-                    <a href="javascript:;" class="mui-control-item" @click="changeScope">
+                    <a href="javascript:;" class="mui-control-item" @tap="changeScope">
                         服务
                     </a>
-                    <a href="javascript:;" class="mui-control-item" @click="changeScope">
+                    <a href="javascript:;" class="mui-control-item" @tap="changeScope">
                         康乐
                     </a>
-                    <a href="javascript:;" class="mui-control-item" @click="changeScope">
+                    <a href="javascript:;" class="mui-control-item" @tap="changeScope">
                         综合
                     </a>
                     <a href="javascript:;" class="mui-control-item" @click="changeScope">
