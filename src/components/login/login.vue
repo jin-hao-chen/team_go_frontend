@@ -8,16 +8,13 @@
         </div>
         <div class="mui-input-group">
             <div class="mui-input-row">
-            <input type="text" class="mui-input-clear" placeholder="学号" v-model="username">
+                <input type="text" class="mui-input-clear" placeholder="学号" v-model="username">
             </div>
             <div class="mui-input-row">
                 <input type="password" class="mui-input-password" placeholder="密码" v-model="password">
             </div>
             <div class="mui-button-row">
-                <button type="button" class="mui-btn mui-btn-primary" @click="login">登录</button>
-            </div>
-            <div class="go-text-div">
-                <span class="go-text">使用该 App 请您认真阅读 www.busix.com 上的用户说明</span>
+                <button type="button" class="mui-btn mui-btn-primary go-mui-btn" @click="login">登录</button>
             </div>
             <div class="mui-content-padded">
 				<div class="link-area">
@@ -31,6 +28,7 @@
 <script>
 
 import mui from '../../libs/mui/js/mui';
+import '../../libs/mui/css/mui.css';
 import { Toast } from 'mint-ui';
 import * as config from '../../api/config';
 
@@ -40,6 +38,11 @@ export default {
             username: '',
             password: ''
         }
+    },
+    created() {
+        this.username = this.$store.getters.getUsername;
+        this.$store.commit('setTitle', '登录');
+        this.$store.commit('setIsShowTabbar', false);
     },
     methods: {
         login() {
@@ -67,14 +70,22 @@ export default {
                         duration: 1000
                     });
                     this.$store.commit('setUsername', response.username);
+                    this.$store.commit('setUserId', response.userId);
                     this.$store.commit('setToken', response.token);
-                    this.$router.push({ path: '/home'});
+                    this.$router.push('/home');
                 } else if (status === config.STATUS_ERROR){
                     Toast({
                         message: response.msg,
                         duration: 2000
                     });
                 }
+            })
+            .catch(error => {
+                loginingToast.close();
+                Toast({
+                    message: '网络连接异常',
+                    duration: 1000
+                });
             });
         }
     }
@@ -86,6 +97,11 @@ export default {
 .go-text-div {
     margin-left: 7%;
     line-height: 10px;
+}
+
+.go-mui-btn {
+    width: 93%;
+    margin-left: 7%;
 }
 
 .go-text {
@@ -101,7 +117,7 @@ export default {
 }
 
 .link-area {
-    padding-left: 35%;
+    padding-left: 38%;
 }
 
 .go-login-container {
@@ -117,26 +133,9 @@ export default {
 .mui-input-group:after {
     height: 0;
 }
-
-.mui-btn {
-    width: 93%;
-    margin-left: 7%;
-}
-
 .mui-button-row {
-    margin-top: 20%;
+    margin-top: 8%;
 }
-
-/* .mui-title {
-    color: #ffffff;
-}
-
-.mui-bar {
-    background-image: url(bg.png);
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    box-shadow: 0 0 0 0;
-} */
 
 .go-icon {
     padding-left: 30%;

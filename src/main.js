@@ -1,6 +1,8 @@
 /* Import vue */
 import Vue from 'vue';
+import FastClick from 'fastclick';
 
+// FastClick.attach(document.body);
 
 /* Import vue-router */
 import VueRouter from 'vue-router';
@@ -14,15 +16,21 @@ import MintUI from 'mint-ui';
 import 'mint-ui/lib/style.css';
 Vue.use(MintUI);
 
+import VueQuillEditor from 'vue-quill-editor';
+
+// require styles
+import 'quill/dist/quill.core.css';
+import 'quill/dist/quill.snow.css';
+import 'quill/dist/quill.bubble.css';
+
+Vue.use(VueQuillEditor, {
+    placeholder: '请输入内容'
+});
+
+
+
 /* Import bootstrap css */
 import './libs/bootstrap/css/bootstrap.css';
-
-
-/* Import mui.js */
-import mui from './libs/mui/js/mui';
-import './libs/mui/js/mui.picker';
-import './libs/mui/js/mui.poppicker';
-import './libs/mui/js/mui.dtpicker';
 
 
 import './libs/mui/css/mui.css';
@@ -30,6 +38,13 @@ import './libs/mui/css/icons-extra.css';
 import './libs/mui/css/mui.picker.css';
 import './libs/mui/css/mui.poppicker.css';
 import './libs/mui/css/mui.dtpicker.css';
+
+
+/* Import mui.js */
+import mui from './libs/mui/js/mui';
+import './libs/mui/js/mui.picker';
+import './libs/mui/js/mui.poppicker';
+import './libs/mui/js/mui.dtpicker';
 
 /* Init mui so that we can use js in mui */
 mui.init();
@@ -72,4 +87,4 @@ var app = new Vue({
     },
     router,
     store
-});
+})

@@ -8,7 +8,14 @@ export default new Vuex.Store({
     state: {
         title: '社团 GO',
         token: '',
-        username: ''
+        username: '',
+        userId: '',
+        ownedClubList: [],
+        mobile: '',
+        isShowTabbar: true,
+        rightWords: '',
+        isShowRightWords: false,
+        clickRight: null
     },
 
     // // 2. getters
@@ -22,6 +29,27 @@ export default new Vuex.Store({
         },
         getUsername(state) {
             return state.username;
+        },
+        getUserId(state) {
+            return state.userId;
+        },
+        getOwnedClubList(state) {
+            return state.ownedClubList;
+        },
+        getMobile(state) {
+            return state.mobile;
+        },
+        getIsShowTabbar(state) {
+            return state.isShowTabbar;
+        },
+        getRightWords(state) {
+            return state.rightWords;
+        },
+        getIsShowRightWords(state) {
+            return state.isShowRightWords;
+        },
+        getClickRight(state) {
+            return state.clickRight;
         }
     },
     // 3. actions
@@ -50,6 +78,27 @@ export default new Vuex.Store({
         },
         setUsername(state, username) {
             state.username = username;
+        },
+        setUserId(state, userId) {
+            state.userId = userId;
+        },
+        setOwnedClubList(state, clubList) {
+            state.ownedClubList = clubList;
+        },
+        setMobile(state, mobile) {
+            state.mobile = mobile;
+        },
+        setIsShowTabbar(state, isShowTabbar) {
+            state.isShowTabbar = isShowTabbar;
+        },
+        setRightWords(state, words) {
+            state.rightWords = words;
+        },
+        setIsShowRightWords(state, isShowRightWords) {
+            state.isShowRightWords = isShowRightWords;
+        },
+        setClickRight(state, clickRight) {
+            state.clickRight = clickRight;
         }
     }
 });;

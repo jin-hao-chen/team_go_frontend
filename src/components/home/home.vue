@@ -1,13 +1,9 @@
 <template>
 <!-- /main/ -->
     <div class="go-container">
-        <go-header :title="$store.getters.getTitle"></go-header>
-        <transition>
-            <keep-alive>
-                <router-view></router-view>
-            </keep-alive>
-        </transition>
-        <go-tabbar></go-tabbar>
+        <go-header :goBackClass="goBackClass"></go-header>
+            <router-view></router-view>
+        <go-tabbar v-show="$store.getters.getIsShowTabbar"></go-tabbar>
     </div>
 </template>
 
@@ -20,28 +16,52 @@ import mui from '../../libs/mui/js/mui';
 
 import '../../static/css/remove_underline.css';
 
+import '../../libs/mui/css/mui.css';
+
+const commonClass = 'mui-bar mui-bar-nav';
+const goBackClass = 'mui-bar mui-bar-nav mui-action-back mui-icon mui-icon-left-nav mui-pull-left';
+
+
 export default {
     name: 'home',
     data() {
         return {
-            title: '社团 GO'
+            title: '社团 GO',
+            goBackClass: commonClass
         };
     },
     methods: {
+        changeGoBackClass() {
+            if (this.$router.currentRoute.path === '/home/club_list/' || this.$router.currentRoute.path === '/home/club_list' 
+            || this.$router.currentRoute.path === '/home/profile/' || this.$router.currentRoute.path === '/home/profile') {
+                this.goBackClass = commonClass;
+            } else {
+                this.goBackClass = goBackClass;
+            }
+        },
+        changeTabbar() {
+            // if (this.$router.currentRoute.path === '/home/club_list/' || this.$router.currentRoute.path === '/home/club_list'
+            // || this.$router.currentRoute.path === '/home/profile/' || this.$router.currentRoute.path === '/home/profile'
+            // || this.$router.currentRoute.path === '/home/notification/' || this.$router.currentRoute.path === '/home/notification') {
+            //     this.isShowTabbar = true;
+            // } else {
+            //     this.isShowTabbar = false;
+            // }
+        }
     },
     components: {
         'go-header': Header,
         'go-tabbar': Tabbar
     },
     created() {
-        // this.changeTitle();
-    },
-    mounted() {
-        
+        this.changeGoBackClass();
+        // this.changeTabbar();
+        this.$store.commit('setIsShowTabbar', true);
     },
     updated() {
-        // this.changeTitle();
-    },
+        this.changeGoBackClass();
+        this.changeTabbar();
+    }
 }
 </script>
 

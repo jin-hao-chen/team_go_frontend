@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div id="go-refreshContainer" class="mui-scroll-wrapper go-mui-scroll-wrapper-space">
+         <div id="go-refreshContainer" class="mui-scroll-wrapper go-mui-scroll-wrapper-space">
             <div class="mui-scroll">
                 <div class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
                 <div class="mui-scroll">
@@ -57,6 +57,7 @@
 
 <script>
 
+
 import { Toast } from 'mint-ui';
 import mui from '../../libs/mui/js/mui';
 import { request } from 'http';
@@ -72,21 +73,24 @@ var options = {
     bounce: false // 默认为 true, 改为 false 为了能在安卓上运行
 }
 
-const normalClass = 'mui-badge-primary';
-const adminClass = 'mui-badge-danger';
-const joinedClass = 'mui-badge-success';
-
 export default {
-    name: 'club-list',
     data() {
         return {
             userId: '',
-            currentType: '全部',
             clubList: [],
+            currentType: '全部',
             manageClubsIds: [],
             joinedClubsIds: [],
             host: config.host
         }
+    },
+    created() {
+        this._initPullRefresh();
+        this.userId = this.$store.getters.getUserId;
+        this.clubList = this.$store.getters.getOwnedClubList;
+        this.getManageClubsIds();
+        this.getJoinedClubsIds();
+        this.$store.commit('setTitle', '加入的社团');
     },
     methods: {
         changeScope(e) {
@@ -111,10 +115,9 @@ export default {
             return false;
         },
         pullRefresh() {
-            // setTimeout(() => {
+            setTimeout(() => {
                 mui('#go-refreshContainer').pullRefresh().endPulldownToRefresh();
-                this.initApp();
-            // }, 2000);
+            }, 2000);
         },
         isManage(clubId) {
             for (var i = 0; i < this.manageClubsIds.length; ++i) {
@@ -182,65 +185,23 @@ export default {
                 });
             });
         },
-        getClubList() {
-            var toast = Toast({
-                message: '加载中...',
-                duration: -1
-            });
-            this.$api.get('clubs/', {
-                headers: {
-                    Token: this.$store.getters.getToken
-                }
-            })
-            .then(response => {
-                toast.close();
-                this.clubList = response.data.clubList;
-            })
-            .catch(error => {
-                toast.close();
-                Toast({
-                    message: '网络连接异常',
-                    duration: 500
-                });
-            });
-        },
-        initApp() {
-            this.getClubList();
-            this.getManageClubsIds();
-            this.getJoinedClubsIds();
-            this.$store.commit('setTitle', '社团列表');
-            this.$store.commit('setIsShowTabbar', true);
-        }
+        
     },
-    created() {
-        this._initPullRefresh();
-        this.userId = this.$store.getters.getUserId;
-        this.currentType = '全部';
-        this.initApp();
-    },
-    mounted: function() {
-        this.$mui.init({
-            pullRefresh: {
-                container:"#go-refreshContainer",
-                down: {
-                    height: 50, //可选,默认50.触发下拉刷新拖动距离,
-                    auto: false, //可选,默认false.首次加载自动下拉刷新一次
-                    contentdown : "",//可选，在下拉可刷新状态时，下拉刷新控件上显示的标题内容
-                    contentover : "",//可选，在释放可刷新状态时，下拉刷新控件上显示的标题内容
-                    contentrefresh : "",//可选，正在刷新状态时，下拉刷新控件上显示的标题内容
-                    callback: this.pullRefresh
-                }
-            }
-        });
-        this.$mui('.mui-scroll-wrapper').scroll(options);
-    },
-    beforeDestroy() {
-        mui.options.pullRefresh = null;
-    }
 }
 </script>
 
-<style>
+<style scoped>
+
+
+.mui-table-view-cell:after {
+    /* 去掉默认的列表项之间的间隙 */
+    content: none;
+}
+
+.mui-table-view::after,
+.mui-table-view::before {
+    height: 0;
+}
 
 .go-circle {
     border-radius:50px;
@@ -255,10 +216,6 @@ export default {
     margin-top: 40px;
 }
 
-.go-mui-scroll-wrapper-space {
-    margin-top: 1%;
-}
-
 .mui-table-view-cell {
     background-color: #ffffff;
     text-decoration: none;
@@ -267,12 +224,18 @@ export default {
 .mui-table-view {
     margin-bottom: 50px;
     list-style: none;
+    
 }
 
 /* 解决谷歌浏览器 preventDefault 的报错 */
 /* * {
     touch-action: pan-y;
 } */
+
+.go-mui-scroll-wrapper-space {
+    margin-top: 1%;
+}
+
 
 #go-refreshContainer {
     background: #fafafafa;
@@ -281,7 +244,5 @@ export default {
 a.router-link-active {
     text-decoration: none;
 }
-
+    
 </style>
-
-
